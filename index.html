@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+<!-- <link href="./static/bootstrap.min.css" rel="stylesheet"> -->
+<link href="./static/mycss.css" rel="stylesheet">
+<link href="./static/mycss_navbar.css" rel="stylesheet">
+<style>
+.bodyContent {
+    padding: 25px 25px ;
+}
+
+/* tareBtn0 */
+#tareBtn0 {
+  display: inline-block;
+  padding: 5px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: grey;
+  border: none;
+  border-radius: 13px;
+  box-shadow: 0 9px #999;
+}
+#tareBtn0:hover {background-color: black}
+#tareBtn0:active {
+  background-color: Gainsboro;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#tipDiv {
+    color: OrangeRed;
+font-weight: bold;
+    border-style:outset;
+    font-size: 250%;
+        background-color: OldLace;
+}
+.spanOut div {
+    background-color: #fff;
+        padding: 1px 1px 8px 1px;
+            color: #aaa;
+}
+.spanOut {
+    display: block;
+    position: fixed;
+    padding: 10px 10px;
+    left: 650px;
+    top: 130px;
+}
+    .txShowCs {
+        display: inline-block;
+    }
+
+    .txInCs, .txShowCs {
+        font: bold;
+    font-size:150%;
+    // background-color: lightgreen;
+}
+
+</style>
+<script type="text/javascript" src="./static/jquery-3.1.1.js"></script>
+
+<!-- <p>预设字组</p> -->
+<script type="text/javascript" src="./dict/wordGroup.js"></script>
+
+            <script type="text/javascript" src="./dict/ms2pin.js"></script>
+    </head>
+    <body>
+<script type="text/javascript">
+
+// if ((coochk0.constructor === String) && (coochk0.length > 0)){
+// spss1time = coochk0;
+// } else {
+// spss1time = "打字区域";
+// }
+
+</script>
+    
+<ul>
+  <li class="fL home"><a href="./">Home</a></li>
+  <li class="fL" id="gotoCJ_ime"><a href="#">仓颉</a></li>
+  <li class="fL" id="gotoPinYin_ime"><a href="#">拼音</a></li>
+  <li class="fL" id="goto_2Pin_ime"><a href="#">MS双拼</a></li>
+  
+  <li class="fR dropdown">
+    <a href="#" class="dropbtn">预设词组</a>
+    <div class="dropdown-content">
+      <a href="#" id="S_wordGroup1">【简】词组1</a>
+      <a href="#" id="S_wordGroup2">【简】词组2</a>
+      <a href="#" id="T_wordGroup1">【繁】词组1</a>
+      <a href="#" id="T_wordGroup2">【繁】词组2</a>
+    </div>
+  </li>
+</ul>
+
+<div class="bodyContent" id="bodyContentID">
+    <h1>输入法练习网页 动态提示</h1>
+    <dl>
+        <dt> 使用说明： </dt>
+        <dd>连结到某个输入法分页 </dd>
+        <dd>切换系统输入法</dd>
+        <dd>选择一个预设词组  或者  使用者自己输入文章</dd>
+        <dd>开始练习</dd>
+    </dl>
+
+    <dl>
+        <dt>其他</dt>
+        <dd>拼音字码尚未整理完，涵盖方言音字码，拼音和双拼的有些字码错误</dd>
+        <dd><a target="_blank" href="https://github.com/britneyxiang/IME_streaming_tip_DEV">源码和细项</a></dd>
+        <dd> 作者mail <span> britneyxiang@gmail.com </span> </dd>
+    </dl>
+
+
+</div>
+
+    </body>
+</html>
+
+
+<script type="text/javascript">
+
+$("#gotoCJ_ime").click(function(){
+    $.getScript( "./dict/msCjDict.js" )
+        .done(function( script, textStatus ) {
+            $("#bodyContentID").load("./views/mscjIMEpage.html");
+        })
+    .fail(function( jqxhr, settings, exception ) {
+        console.log( "Triggered ajaxError handler." );
+    });
+});
+
+$("#gotoPinYin_ime").click(function(){
+    $.getScript( "./dict/th_PinYinDict.js" )
+        .done(function( script, textStatus ) {
+            $("#bodyContentID").load("./views/pinyinIMEpage.html");
+        })
+    .fail(function( jqxhr, settings, exception ) {
+        console.log( "Triggered ajaxError handler." );
+    });
+});
+
+$("#goto_2Pin_ime").click(function(){
+    $.getScript( "./dict/th_PinYinDict.js" )
+        .done(function( script, textStatus ) {
+            $("#bodyContentID").load("./views/ms2pinIMEpage.html");
+        })
+    .fail(function( jqxhr, settings, exception ) {
+        console.log( "Triggered ajaxError handler." );
+});
+});
+
+
+// wordGroup_var
+$('#S_wordGroup1').click(function(){
+$("textarea").val(wordGroup_var1);
+$('#tareBtn0').click();
+});
+
+$('#S_wordGroup2').click(function(){
+$("textarea").val(wordGroup_var2);
+$('#tareBtn0').click();
+});
+
+
+$('#T_wordGroup1').click(function(){
+$("textarea").val(wordGroup_var3);
+$('#tareBtn0').click();
+});
+
+$('#T_wordGroup2').click(function(){
+$("textarea").val(wordGroup_var4);
+$('#tareBtn0').click();
+});
+
+</script>

@@ -1,0 +1,31 @@
+| 双拼键位比较表 |          |
+|----------------|----------|
+| ABC双拼        | 微软双拼 |
+| ai=L           | ai=L     |
+| an=J           | an=J     |
+| ang=H          | ang=H    |
+| ao=K           | ao=K     |
+| ei=Q           | ei=Z     |
+| en=F           | en=F     |
+| eng=G          | eng=G    |
+| er=R           | er=R     |
+| ia=D           | ia=W     |
+| ian=W          | ian=M    |
+| iang=T         | iang=D   |
+| iao=Z          | iao=C    |
+| ie=X           | ie=X     |
+| in=C           | in=N     |
+| ing=Y          | ing=;    |
+| iong=S         | iong=S   |
+| iu=R           | iu=Q     |
+| ong=S          | ong=S    |
+| ou=B           | ou=B     |
+| ua=D           | ua=W     |
+| uai=C          | uai=Y    |
+| uan=P          | uan=R    |
+| uang=T         | uang=D   |
+| ue=M           | ue=T     |
+| ui=M           | ui=V     |
+| un=N           | un=P     |
+| uo=O           | uo=O     |
+| v=v            | v=y      |

@@ -1,0 +1,159 @@
+<script type="text/javascript">
+$("li").css("background-color", "#5f5f5f");
+$("#gotoPinYin_ime").css("background-color", "#4CAF50");
+</script>
+
+<body>
+    <div style="float:right;">
+<textarea rows="5" cols="70" placeholder="贴上文章
+贴上空值则清除记录..
+    "></textarea>
+<br />
+<button id="tareBtn0">导入</button>
+    </div>
+<div id="imeOuter"></div>
+
+<div class="spanOut">
+    <div>字码提示</div>
+<span id="tipDiv">spanTIP</span>
+</div>
+
+</body>
+<script type="text/javascript">
+
+var dflt_spss = "打字区域";
+var cbInput = [];
+// in string return Arr,and rm space
+//getIn )
+function s2Arr_ftSign(x){  
+    // 还有其他符号可删除
+    var x = x.replace(/\s/g,"");
+    var y = x.split(""); 
+    return y
+}
+// console.log('===NG achorn.==============================');
+
+// cookie の 
+// show check 如果空值 then showtext = "default string"
+// spss1time 是 default String
+function checkString(x){
+    // if (x.length > 0){
+    if ((x.length > 0) && (x)){
+        // true then don't show spss1time 
+        // Cookies.set('coo_txShow', x, { expires: 1, path: '/' });
+        return x
+    } else {
+        // false then show spss1time 
+ // Cookies.remove('coo_txShow');
+        return dflt_spss
+    }
+}
+
+
+
+// layout span input tagsTEXT,,by Arr
+function layoutSItxt(xArr){
+cbInput = xArr;  // for compare use
+    var xArr_L = xArr.length;
+    for (i = 0; i < xArr_L; i+=20) {
+        for (j = i; j < i+20 ; j++) {
+            var txt1 = $("<span></span>").attr("id", "txShow"+j).addClass("txShowCs").text(xArr[j]);
+            $("#imeOuter").append(txt1);
+        }
+        var txt2 = $("<br />");
+        $("#imeOuter").append(txt2);
+        var txt3 = $("<input>").attr("id", "txIn"+i).addClass("txInCs").attr("type", "text").attr("maxlength", "20").attr("size", "36").attr("placeholder", "typeing area");
+        $("#imeOuter").append(txt3);
+        var txt4 = $("<br /><br />");
+        $("#imeOuter").append(txt4);
+        if((i+20) > xArr_L ){
+            var lastdouInput = xArr_L - i;
+            $("#txIn"+i).attr("maxlength",lastdouInput).attr("size",lastdouInput * 1.6);
+        }
+    }
+}
+
+// find IME mapping code
+function qryCh(a){
+    for (x in cin3)
+    {
+        if(cin3[x].ch == a)
+        {return cin3[x].code; }
+    }
+}
+
+function loadPageShowInput(){
+var spss1time ='';
+    // spss1time =Cookies.get('coo_txShow');
+    var s1t = checkString(spss1time);
+var s1t2 =s2Arr_ftSign(s1t); 
+// cbInput = s1t2;  // for compare use
+        layoutSItxt(s1t2); 
+}
+loadPageShowInput();
+
+
+//show chCode 1st
+function showchCodeTip1st(){
+    // var x = $("#txShow0").text();
+    var x = cbInput[0];
+    qc1 =  qryCh(x);
+    $("#tipDiv").text(qc1);
+}
+showchCodeTip1st();
+
+// compare string and show color chCode 動態的地
+// combine all input.val()
+function combineallinput(){
+    var inputs = document.querySelectorAll("input");
+    Array.prototype.forEach.call(inputs, function(input) {
+        input.addEventListener("input", function(e) {
+            // inputs value 有2层，2个for拆开
+            for (var i = 0, val = "", len = inputs.length; i < len; i++) {
+                val += inputs[i].value;
+            }
+            val = val.split("");
+            for (i=0;i<val.length;i++){
+                if(val[i] == cbInput[i]) {
+                    qc2 =  qryCh(cbInput[i+1]);
+                    $("#tipDiv").text(qc2);
+                    $("#txShow"+i).css("background-color","lightgreen");
+                } else {
+                    $("#txShow"+i).css("background-color","red");
+                }
+            }
+            // 打完了啊思 done keyinput
+            if (val.length == cbInput.length){
+            } else{
+            }
+        })
+    })
+}
+combineallinput();
+
+
+
+
+function sendtext(x){
+var y = checkString(x);
+        var yy = s2Arr_ftSign(y);
+    $("#imeOuter").empty();
+        layoutSItxt(yy);
+        combineallinput();
+        // loadPageShowInput();
+        showchCodeTip1st();
+}
+
+// var test3 = '区域';
+// sendtext(test3);
+
+$('#tareBtn0').click(function(){
+    var spssS =$("textarea").val();
+    sendtext(spssS);
+        $("textarea").val('');
+});
+
+// Cookies.set('name', 'value000', { expires: 7, path: '/' });
+// var ggqq = Cookies.remove('name');
+// Cookies.remove('name'); 
+</script>
